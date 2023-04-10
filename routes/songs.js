@@ -8,7 +8,7 @@ router.get(
 	'/:username',
 	asyncHandler(async (req, res, next) => {
 		const { page } = req.query ?? 0
-		const { limit } = req.query ?? 20 
+		const { limit } = req.query ?? 20
 		const offset = page * limit
 		const { username } = req.params
 		const { rows } = await pool.query(
@@ -51,7 +51,7 @@ router.get(
 	'/random/all',
 	asyncHandler(async (req, res, next) => {
 		const { limit } = req.query ?? 20
-		const offset = getRandomInt(0, 180) 
+		const offset = getRandomInt(0, 180)
 
 		const { rows } = await pool.query(
 			`select songid,
@@ -62,7 +62,7 @@ router.get(
                   cover_image_url,
                   first_name,
                   last_name from songs left join songappusers on songs.userid=songappusers.username offset $1 limit $2;`,
-			[offset, limit] 
+			[offset, limit]
 		)
 
 		res.send({ results: rows })
