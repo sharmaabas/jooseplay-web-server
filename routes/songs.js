@@ -7,9 +7,9 @@ const router = express.Router()
 router.get(
 	'/:username',
 	asyncHandler(async (req, res, next) => {
-		/*const { page } = req.query ?? 0
+		const { page } = req.query ?? 0
 		const { limit } = req.query ?? 20 
-		const offset = page * limit*/
+		const offset = page * limit
 		const { username } = req.params
 		const { rows } = await pool.query(
 			`select songid,
@@ -19,8 +19,8 @@ router.get(
                   duration,
                   cover_image_url,
                   first_name,
-                  last_name from songs left join songappusers on songs.userid=songappusers.username where userid='${username}'` /*offset $1 limit $2;`,*/
-			/*[offset, limit]*/
+                  last_name from songs left join songappusers on songs.userid=songappusers.username where userid='${username}' offset $1 limit $2;`,
+			[offset, limit]
 		)
 
 		res.send({ results: rows })
@@ -50,8 +50,8 @@ router.get(
 router.get(
 	'/random/all',
 	asyncHandler(async (req, res, next) => {
-		/*const { limit } = req.query ?? 20
-		const offset = getRandomInt(0, 180) */
+		const { limit } = req.query ?? 20
+		const offset = getRandomInt(0, 180) 
 
 		const { rows } = await pool.query(
 			`select songid,
@@ -61,8 +61,8 @@ router.get(
                   duration,
                   cover_image_url,
                   first_name,
-                  last_name from songs left join songappusers on songs.userid=songappusers.username` /*offset $1 limit $2;`,*/
-			/*[offset, limit] */
+                  last_name from songs left join songappusers on songs.userid=songappusers.username offset $1 limit $2;`,
+			[offset, limit] 
 		)
 
 		res.send({ results: rows })
