@@ -10,10 +10,10 @@ const Pool = pg.Pool
 }) */
 
  const pool = new Pool({
- 	database: 'jooseplay',
- 	host: 'localhost',
+ 	database: 'jooseplay_db',
+ 	host: 'my-db-instance.ckvgjumbnx2z.eu-north-1.rds.amazonaws.com',
  	port: 5432,
- 	user: 'postgres',
+ 	user: 'churchill',
  	password: 'Pa33MeNow$$',
  })
 
