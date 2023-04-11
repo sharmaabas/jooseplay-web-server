@@ -8,8 +8,8 @@ router.get(
 	'/:tag',
 	asyncHandler(async (req, res, next) => {
 		const { page } = req.query ?? 0
-		const { limit } = req.query ?? 20 
-		const offset = page * limit 
+		const { limit } = req.query ?? 20
+		const offset = page * limit
 
 		const { rows } = await pool.query(
 			`select songid,
@@ -20,7 +20,7 @@ router.get(
                   cover_image_url,
                   first_name,
                   last_name from songs left join songappusers on songs.userid=songappusers.username where '${req.params.tag}'= any(tags) offset $1 limit $2;`,
-			[offset, limit] 
+			[offset, limit]
 		)
 
 		res.send({ results: rows })
