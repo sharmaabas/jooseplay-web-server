@@ -11,7 +11,7 @@ router.get(
 		const { limit } = req.query ?? 20
 		const offset = page * limit
 		const { rows } = await pool.query(
-			`select avatar,first_name,last_name,username from songappusers offset$1 limit $2;`,
+			`select avatar,first_name,last_name,username from songappusers offset $1 limit $2;`,
 			[offset, limit]
 		)
 
